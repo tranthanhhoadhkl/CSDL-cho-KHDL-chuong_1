@@ -150,6 +150,14 @@ for row in rows:
 
 conn.close()
 
+# Trả lời câu hỏi phụ
+    - Có 2 vấn đề gặp phải khi chuyển đổi thông tin :
+        - Chuyển đổi nhiều nhân viên cùng lúc
+        - Sau chuyển đổi không có gì thay đổi
+# Cách khắc phục :
+    - Nên chọn những thứ độc nhất riêng biệt không trùng lặp (MaNV)
+    - Kiểm tra có nhân viên trong bảng nhân viên hay không 
+
 #8 Xóa nhân viên có “MaSV = 2”
 conn = sqlite3.connect("nhanvien.db")
 cursor = conn.cursor()
