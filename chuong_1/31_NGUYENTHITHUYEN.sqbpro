@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/HK2_NAM3/SQL_KHDL/chuong_1/nhanvien.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="150"/><column_width id="3" width="1682"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainNhanVien"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="NhanVien" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="71"/><column index="2" value="132"/><column index="3" value="61"/><column index="4" value="115"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">--chương 1
+--1  Tạo một bảng có tên NhanVien
+create table NhanVien(
+	MaNV int primary key,
+	HoTen varchar(50),
+	Tuoi int,
+	PhongBan varchar(50));
+--2 Chèn các bản ghi sau vào bảng 
+SELECT * FROM NhanVien;
+INSERT INTO NhanVien (MaNV, HoTen, Tuoi, PhongBan) VALUES
+(1, 'Nguyen Van A', 30, 'Ke Toan'),
+(2, 'Tran Thi B', 25, 'Nhan Su'),
+(3, 'Le Van C', 28, 'IT'),
+(4, 'Pham Thi D', 32, 'Ke Toan'),
+(5, 'Vu Van E', 26, 'IT'),
+(6, 'Nguyen Thi F', 29, 'Marketing'),
+(7, 'Le Thi G', 27, 'Nhan Su'),
+(8, 'Hoang Van H', 35, 'Ke Toan'),
+(9, 'Pham Van I', 33, 'Marketing'),
+(10, 'Tran Van J', 24, 'IT'),
+(11, 'Dang Thi K', 31, 'Nhan Su'),
+(12, 'Nguyen Van L', 28, 'Ke Toan'),
+(13, 'Tran Thi M', 26, 'Marketing'),
+(14, 'Pham Van N', 30, 'Nhan Su'),
+(15, 'Hoang Thi O', 27, 'IT');
+--3 Lấy toàn bộ thông tin của nhân viên trong bảng NhanVien
+SELECT * FROM NhanVien;
+
+-- 4 Truy vấn HoTen và Tuoi của nhân viên phòng &quot;IT&quot;
+SELECT HoTen, Tuoi FROM NhanVien WHERE PhongBan = 'IT';
+
+--5 Tìm nhân viên có độ tuổi lớn hơn 25
+SELECT * FROM NhanVien WHERE Tuoi &gt; 25;
+
+--6 Tìm nhân viên lớn tuổi nhất trong từng phòng ban
+SELECT PhongBan, max(Tuoi)
+FROM NhanVien
+group by PhongBan;
+
+--7 Cập nhật phòng ban của &quot;Le Van C&quot; từ &quot;IT&quot; sang &quot;Marketing&quot;
+UPDATE NhanVien SET PhongBan = 'Marketing' WHERE HoTen = 'Le Van C' ;
+--Vấn đề có thể gặp phải:
+---Nếu có nhiều nhân viên tên &quot;Le Van C&quot;, lệnh này sẽ cập nhật tất cả.
+---Giải pháp: Nếu MaNV là duy nhất, hãy dùng nó thay vì HoTen:
+UPDATE NhanVien SET PhongBan = 'Marketing' WHERE MaNV = 3;
+
+--8 Xóa nhân viên có MaNV = 2 rồi đếm số nhân viên trong mỗi phòng ban
+DELETE FROM NhanVien WHERE MaNV = 2;
+SELECT PhongBan, COUNT(*) AS SoLuongNhanVien
+FROM NhanVien
+GROUP BY PhongBan;</sql><current_tab id="0"/></tab_sql></sqlb_project>
